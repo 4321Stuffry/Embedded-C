@@ -1,18 +1,25 @@
 #include <Arduino.h>
+void setup(){
+DDRD=0xFF;
 
-// put function declarations here:
-int myFunction(int, int);
 
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+
+
+
+}
+void loop(){
+for(int i=0;i<8;i++){
+PORTD=1<<i;
+delay(50);
+
+
+
+}
+for(int i=7  ;i>=0;i--){
+PORTD=1<<i;
+delay(50);
+
+
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
 }
