@@ -6,7 +6,9 @@ DDRD |= (1<<2); // Set PORTB1 as input and PORTD0 as output
 PORTB |= (1<<0); // Set PORTB1 as output and initialize it to high
 }
 void loop() {
- // Check if PORTB1 is high
+// Check the state of PORTB0 and set PORTD2 accordingly
+// If PORTB0 is low, set PORTD2 high; if PORTB0 is high, set PORTD2 low
+// This is a simple toggle mechanism based on the state of PORTB0   
    if((PINB & (1<<0))==0){
     PORTD  |=(1<<2);
     // Set PORTB0 high
