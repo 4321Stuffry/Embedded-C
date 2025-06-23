@@ -1,18 +1,23 @@
-#include <Arduino.h>
-
-// put function declarations here:
-int myFunction(int, int);
+#include <Arduino.h>  
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  DDRC &= ~(1 << 0);
+  DDRD |= 0xFC;
+  PORTC |= (1 << 0);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  if ((PIND & (1 << 3)) == 0) {
+    PORTD |= 0b10000000;
+    PORTD &= 0b10001111;
+    for (int i = 1; i < 7; i++) {
+      delay(50);
+      PORTD |= (1 << i);
+      PORTD &= ~(1 << (i - 1));
+    }
+    PORTD &= 0x00;
+    delay(500);
+  } else {
+    PORTD &= 0x00;
+  }
 }
