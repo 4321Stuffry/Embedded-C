@@ -1,15 +1,18 @@
-#include <Arduino.h>
-volatile bool led_state = HIGH; // Volatile variable to hold the LED state
+#include <Arduino.h> 
+ int a=0;
+
+volatile bool led_state = LOW; // Volatile variable to hold the LED state
 void blink() {
-  static bool led_state = LOW; // Static variable to hold the LED state
-  led_state = !led_state; // Toggle the LED state
-  digitalWrite(7, led_state); // Write the new state to pin 13
+
+  a++;
+Serial.println(a); // Print the value of a to the Serial Monitor
 }
 void setup(){
 pinMode(7, OUTPUT); // Set pin 13 as output
+Serial.begin(115200); // Initialize Serial communication at 115200 baud rate
 pinMode(2, INPUT); // Set pin 12 as output
-attachInterrupt(digitalPinToInterrupt(2),blink, FALLING); // Attach interrupt to pin 2{
-
+led_state = LOW; // Initialize the LED state to LOW
+attachInterrupt(digitalPinToInterrupt(2),blink, FALLING); // Attach interrupt to pin 2
 }
 void loop(){
 digitalWrite(7, led_state); // Turn on the LED
