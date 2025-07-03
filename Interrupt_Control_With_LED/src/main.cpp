@@ -1,11 +1,12 @@
 #include <Arduino.h> 
- int a=0;
+volatile int a = 1;
 
 volatile bool led_state = LOW; // Volatile variable to hold the LED state
 void blink() {
-
-  a++;
+  a = a + 2; // Increment the variable a by 2
 Serial.println(a); // Print the value of a to the Serial Monitor
+
+
 }
 void setup(){
 pinMode(7, OUTPUT); // Set pin 13 as output
