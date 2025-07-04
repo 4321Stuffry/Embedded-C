@@ -11,31 +11,33 @@ void setup() {
   DDRB = 0x00; // Set PORTC as input
   PORTB = 0xFF; // Enable pull-up resistors on PORTC
   DDRC= 0xff;
- // Serial.begin(9600);
+ Serial.begin(9600);
 }
 void loop() {
   for (int i = 0; i < 4; i++) {
     PORTC &= (~(1 << i)); 
-    delay(50); // Debounce delay
-    Serial.println(i);
+   
+    //Serial.println(i);
     for (int j = 0; j < 4; j++) {
       if ((PINB & (1 << j )) == 0) {
-        // Serial.begin(9600);
-        // Serial.println(a[i][j]);
-        // Serial.end();
-       if( a[i][j] >= '0' && a[i][j] <= '9') {    
+        Serial.begin(9600);
+        Serial.println(a[i][j]);
+        Serial.end();
+      }
+      if( a[i][j] >= '0' && a[i][j] <= '9') {    
       
       Serial.begin(9600);
         Serial.println(a[i][j] - '0');
-        Serial.end(); // Convert character to digit and display on 7-segment
+        // Serial.end();  Convert character to digit and display on 7-segment
        }                                                           
-          //    PORT  = seg[a[i][j]]; // Display the digit on the 7-segment display
+             PORT  = seg[a[i][j]]; // Display the digit on the 7-segment display
         delay(100); // Wait for 1 second
     
           }    delay(100);
-  
+  */
     }
-    PORTC = 0xFF;
+delay(1000); // Wait for 1 second before the next iteration
+    PORTC = 0xFF; // Reset PORTC to high  
   }
 
 }
